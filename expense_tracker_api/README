@@ -1,0 +1,2 @@
+Simple finance manager API using Go, Chi, Middleware and JWT for authentication.
+This API allows you to create, read, and delete income and outcome transactions, as well as get the current balance of your account.
