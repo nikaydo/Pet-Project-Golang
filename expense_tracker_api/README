@@ -1,2 +1,34 @@
-Simple finance manager API using Go, Chi, Middleware and JWT for authentication.
-This API allows you to create, read, and delete income and outcome transactions, as well as get the current balance of your account.
+# Expense Tracker API
+
+This is a simple API for managing personal expenses. It provides endpoints for user authorization, creating new transactions, getting user balance and getting transactions history.
+
+## Endpoints
+
+### User authorization
+* `POST /auth`: Creates a new user if it doesn't exist or logs in existing user. Body should contain `username` and `password` fields.
+
+### Transactions
+
+* `POST /transactions`: Creates a new transaction. Body should contain `amount`, `type` (either "income" or "outcome"), `note` and `tag` fields.
+* `GET /transactions`: Returns a list of all transactions for the current user. List is split into two parts: `income` and `outcome`.
+
+### Balance
+
+* `GET /balance`: Returns current balance for the current user.
+
+## Authentication
+API uses JSON Web Tokens (JWT) for authentication. After successful `POST /auth` request, API returns a JWT token in `Set-Cookie` header. This token is stored in the `Authorization` cookie and is used for all subsequent requests.
+
+## Environment variables
+
+API uses the following environment variables:
+
+* `SECRET_KEY_FOR_JWT`: Secret key for JWT token generation.
+* `SECRET_KEY_FOR_AES`: Secret key for AES encryption.
+* `EXPIRED_TIME_FOR_JWT`: Time in seconds for JWT token to expire.
+* `EXPIRED_TIME_FOR_REFRESH`: Time in seconds for refresh token to expire.
+* `KEY_FOR_COOKIE`: Key for cookie encryption.
+
+## Database
+
+API uses SQLite as a database. Database file is located in the `wallet.db` file in the root of the project.
